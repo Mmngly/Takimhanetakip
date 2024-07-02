@@ -1,0 +1,58 @@
+{% extends 'ozel_admin/base.html' %}
+
+{% block content %}
+    <h1 class="title">{{ alet.isim }}</h1>
+    <table class="table">
+        <tr>
+            <th>Marka:</th>
+            <td>{{ alet.marka }}</td>
+        </tr>
+        <tr>
+            <th>Model:</th>
+            <td>{{ alet.model }}</td>
+        </tr>
+        <tr>
+            <th>Raf:</th>
+            <td>{{ alet.raf }}</td>
+        </tr>
+        <tr>
+            <th>Durum:</th>
+            <td>{{ alet.durum }}</td>
+        </tr>
+        {% if alet.teknisyen %}
+        <tr>
+            <th>Teknisyen:</th>
+            <td>{{ alet.teknisyen }}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <h2 class="subtitle">Hareket Geçmişi</h2>
+    <table class="table is-striped">
+        <thead>
+            <tr>
+                <th>Teknisyen</th>
+                <th>Alınma Zamanı</th>
+                <th>Teslim Zamanı</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hareket in hareketler %}
+                <tr>
+                    <td>{{ hareket.teknisyen }}</td>
+                    <td>{{ hareket.alinma_zamani }}</td>
+                    <td>{{ hareket.teslim_zamani|default_if_none:"-" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="subtitle">Son 5 Kullanan Teknisyen</h2>
+    <ul>
+        {% for teknisyen in son_kullanicilar %}
+            <li>{{ teknisyen }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'takimhane_anasayfa' %}" class="button">Anasayfaya Dön</a>
+{% endblock %}

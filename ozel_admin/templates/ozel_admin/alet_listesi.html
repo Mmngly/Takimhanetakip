@@ -1,0 +1,29 @@
+{% extends 'ozel_admin/base.html' %}
+
+{% block content %}
+    <h1 class="title">Alet Listesi</h1>
+    <table class="table is-striped">
+        <thead>
+            <tr>
+                <th>İsim</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Raf</th>
+                <th>Durum</th>
+                <th>Teknisyen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alet in aletler %}
+                <tr>
+                    <td>{{ alet.isim }}</td>
+                    <td>{{ alet.marka }}</td>
+                    <td>{{ alet.model }}</td>
+                    <td>{{ alet.raf }}</td>
+                    <td>{{ alet.durum }}</td>
+                    <td>{{ alet.teknisyen }}</td> 
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

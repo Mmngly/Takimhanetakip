@@ -1,0 +1,64 @@
+{% extends 'ozel_admin/base.html' %}
+
+{% block content %}
+    <h1 class="title">Alet Ekle</h1>
+
+    <form method="post" class="box">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">İsim</label>
+            <div class="control">
+                {{ form.isim }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Marka</label>
+            <div class="control">
+                {{ form.marka }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Model</label>
+            <div class="control">
+                {{ form.model }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Raf</label>
+            <div class="control">
+                {{ form.raf }} 
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Durum</label>
+            <div class="control">
+                {{ form.durum }}
+            </div>
+        </div>
+        <div id="teknisyen-secimi" class="field" style="display:none;">
+            <label class="label">Teknisyen</label>
+            <div class="control">
+                <select name="teknisyen">
+                    {% for teknisyen in teknisyenler %}
+                        <option value="{{ teknisyen.id }}">{{ teknisyen.isim }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button class="button is-primary" type="submit">Kaydet</button>
+    </form>
+
+<script>
+    const durumSelect = document.getElementById('id_durum');
+    const teknisyenSecimi = document.getElementById('teknisyen-secimi');
+
+    durumSelect.addEventListener('change', () => {
+        if (durumSelect.value === 'teknisyende') {
+            teknisyenSecimi.style.display = 'block';
+        } else {
+            teknisyenSecimi.style.display = 'none';
+        }
+    });
+</script>
+
+{% endblock %}

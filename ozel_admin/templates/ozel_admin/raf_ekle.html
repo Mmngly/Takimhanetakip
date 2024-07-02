@@ -1,0 +1,10 @@
+{% extends 'ozel_admin/base.html' %}
+
+{% block content %}
+    <h1 class="title">Raf Ekle</h1>
+    <form method="post" class="box">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button is-primary" type="submit">Kaydet</button>
+    </form>
+{% endblock %}

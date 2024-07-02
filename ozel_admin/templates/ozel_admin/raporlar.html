@@ -1,0 +1,31 @@
+{% extends 'ozel_admin/base.html' %}
+
+{% block content %}
+<h1 class="title">Raporlar</h1>
+
+{% for gun in alinan_aletler_listesi %}
+    <h2 class="subtitle">{{ gun.tarih }}</h2>
+    {% if gun.alinan_aletler %}
+        <table class="table is-striped">
+            <thead>
+                <tr>
+                    <th>Alet</th>
+                    <th>Teknisyen</th>
+                    <th>Alınma Zamanı</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hareket in gun.alinan_aletler %}
+                    <tr>
+                        <td>{{ hareket.alet.isim }}</td>
+                        <td>{{ hareket.teknisyen.isim }}</td>
+                        <td>{{ hareket.alinma_zamani }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{{ gun.tarih }} tarihinde 18:30'a kadar teslim edilmemiş alet bulunamadı.</p>
+    {% endif %}
+{% endfor %}
+{% endblock %}

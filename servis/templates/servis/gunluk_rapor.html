@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">Günlük Rapor ({{ rapor_tarihi }})</h1>
+
+    {% if alinan_aletler %}
+        <table class="table is-striped">
+            <thead>
+                <tr>
+                    <th>Alet</th>
+                    <th>Teknisyen</th>
+                    <th>Alınma Zamanı</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hareket in alinan_aletler %}
+                    <tr>
+                        <td>{{ hareket.alet.isim }}</td>
+                        <td>{{ hareket.teknisyen.isim }}</td>
+                        <td>{{ hareket.alinma_zamani }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Dün saat 18:30'a kadar teslim edilmemiş alet bulunamadı.</p>
+    {% endif %}
+
+    <a href="{% url 'takimhane_anasayfa' %}" class="button">Anasayfaya Dön</a>
+{% endblock %}

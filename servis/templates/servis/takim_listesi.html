@@ -1,0 +1,30 @@
+{% extends 'ozel_admin/base.html' %}
+
+{% block content %}
+    <h1 class="title">Takım Listesi</h1>
+
+    <table class="table is-striped">
+        <thead>
+            <tr>
+                <th>Plaka</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Sahip Adı</th>
+                <th>Sahip Telefon</th>
+                <th>Servis Durumu</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for takim in takimlar %}
+                <tr>
+                    <td>{{ takim.plaka }}</td>
+                    <td>{{ takim.marka }}</td>
+                    <td>{{ takim.model }}</td>
+                    <td>{{ takim.sahip_adi }}</td>
+                    <td>{{ takim.sahip_telefon }}</td>
+                    <td>{{ takim.servis_durumu }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

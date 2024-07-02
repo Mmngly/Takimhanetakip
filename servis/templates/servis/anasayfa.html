@@ -1,0 +1,28 @@
+<table>
+    <thead>
+        <tr>
+            <th>Alet</th>
+            <th>Teknisyen</th>
+            <th>Raf</th>
+            <th>Alınma Zamanı</th>
+            <th>İşlemler</th>
+            <th> <a href="{% url 'alet_ver' hareket.alet.id %}">Alet Ver</a>  </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hareket in alet_hareketleri %}
+            <tr>
+                <td>{{ hareket.alet.isim }}</td>
+                <td>{{ hareket.teknisyen.isim }}</td>
+                <td>{{ hareket.alet.raf.isim }}</td>
+                <td>{{ hareket.alinma_zamani }}</td>
+                <td>
+                    <a href="{% url 'alet_detay' hareket.alet.id %}">Alet Detay</a> |
+                    <a href="{% url 'alet_teslim_al' hareket.id %}">Teslim Al</a> |
+                    <a href="{% url 'alet_aktar' hareket.id %}">Aktar</a> |
+                   
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
